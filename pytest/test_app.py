@@ -1,8 +1,8 @@
 from app import app
 import pytest
 
+import json
 import os
-import tempfile
 
 @pytest.fixture(scope='session')
 def client():
@@ -17,20 +17,17 @@ def client():
 
 def test_sort_books_scenario4(client):
     res = client.post('/sort', json={})
-    assert 2 == 2
+    error = json.loads(res.data.decode('utf-8')).get('error')
+    assert error == 'SortingServiceException'
 
-# def test_sort_books_scenario4(json_books):
-#     rules = {'edition_year': True, 'author': True, 'title': False}
-#     result = utilities.sort_books(json_books, rules)
-#     assert result[0]['title'] == 'Java How To Program'
-#     assert result[1]['title'] == 'Internet & World Wide Web: How to Program'
-#     assert result[2]['title'] == 'Head First Design Patterns'
-#     assert result[3]['title'] == 'Patterns of Enterprise Application Architecture'
-
-# def test_sort_books_scenario5(json_books):
-#     rules = {'edition_year': True, 'author': True, 'title': False}
-#     result = utilities.sort_books(json_books, rules)
-#     assert result[0]['title'] == 'Java How To Program'
-#     assert result[1]['title'] == 'Internet & World Wide Web: How to Program'
-#     assert result[2]['title'] == 'Head First Design Patterns'
-#     assert result[3]['title'] == 'Patterns of Enterprise Application Architecture'
+def test_sort_books_scenario5(client):
+    rules = {}
+    json_books = {
+        "books": [],
+        "sorting_title": "",
+        "sorting_author": "",
+        "sorting_edition_year": ""
+    }
+    res = client.post('/sort', json=json_books)
+    result = json.loads(res.data.decode('utf-8')).get('result')
+    assert len(result) == 0
