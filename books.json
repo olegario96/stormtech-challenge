@@ -22,5 +22,5 @@
   ],
   "sorting_title": "ascending",
   "sorting_author": "ascending",
-  "sorting_year": "ascending"
+  "sorting_edition_year": "descending"
 }
