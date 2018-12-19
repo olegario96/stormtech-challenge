@@ -42,8 +42,8 @@ def sort_books():
         sort the books, the server will respond with the books ordered by
         the criteria(s) in JSON format too.
     """
-     result = []
-     if request.method == 'POST':
+    result = []
+    if request.method == 'POST':
         json_books = request.json
         rules = utilities.get_rules_from_json(json_books)
         if rules:
@@ -52,10 +52,10 @@ def sort_books():
             res = {'result': result, 'error': ''}
         else:
             res = {'result': result, 'error': 'SortingServiceException'}
-     else:
+    else:
         res = {'result': result, 'error': 'Request must use POST method!'}
 
-     return jsonify(res)
+    return jsonify(res)
 
 
 if __name__ == '__main__':
