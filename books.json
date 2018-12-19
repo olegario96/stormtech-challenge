@@ -1,6 +1,5 @@
 {
-  "books": [
-    {
+  "books": [{
       "title": "Java How To Program",
       "author": "Deitel & Deitel",
       "edition_year": "2007"
@@ -19,8 +18,7 @@
       "title": "Internet & World Wide Web: How to Program",
       "author": "Deitel & Deitel",
       "edition_year": "2007"
-    },
-
+    }
   ],
   "sorting_title": "ascending",
   "sorting_author": "ascending",
