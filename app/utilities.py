@@ -63,12 +63,9 @@ def get_rules_from_json(json_books):
 
 def sort_books(json_books, rules):
     result = []
-    result.append(json_books['books'].pop(0))
-    for book in json_books['books']:
+    result.append(json_books.get('books').pop(0))
+    for book in json_books.get('books'):
         index = binary_search(result, book, rules)
-        print(index)
-        print(book)
-        print(result)
         result.insert(index+1, book)
 
     return result

@@ -23,10 +23,11 @@ def sort_books():
      result = []
      if request.method == 'POST':
         json_books = request.json
-        if json_books['rules']:
+        if json_books.get('rules'):
             rules = utilities.get_rules_from_json(json_books)
-            result = utilities.sort_books(json_books, rules)
-            res = {'result': result, 'error': ''}
+            if json_books.get('books'):
+                result = utilities.sort_books(json_books, rules)
+                res = {'result': result, 'error': ''}
         else:
             res = {'result': result, 'error': 'SortingServiceException'}
      else:
